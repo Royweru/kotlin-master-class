@@ -2,11 +2,18 @@ package oop
 
 fun main(args: Array<String>) {
 
+    val BobAccount = Account("Bob")
+    BobAccount.deposit(20000)
+    BobAccount.withdraw(1000)
+    BobAccount.deposit(-6000)
+
+    val balance = BobAccount.calculateBalance()
+    println("Your balance is $balance")
 }
 
 class Account(val accountName:String){
-    var balance = 0
-    var transactions = mutableListOf<Int>()
+    private var balance = 0
+    private var transactions = mutableListOf<Int>()
 
 
     fun deposit(amount:Int){
@@ -24,7 +31,7 @@ class Account(val accountName:String){
         if (-withdrawal<0){
             transactions.add(-withdrawal)
             this.balance += -withdrawal
-            println("$withdrawal deposited. Balance is now ${this.balance}")
+            println("$withdrawal withdrawn. Balance is now ${this.balance}")
         }else{
             println("Cannot withdraw negative sums")
         }
